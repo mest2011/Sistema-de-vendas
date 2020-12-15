@@ -39,10 +39,11 @@
 
         <div id="cadastro">
             <h1>Cadastro de venda</h1>
-            <form action="#" id="venda" class="form" method="POST">
+            <form action="../controller/carrinho_controller.php" id="venda" class="form" method="POST">
+                <input type="text" name="json" id="json">
                 <div class="form-group">
                     <label for="product">Produto</label>
-                    <input class="form-control col-sm-4" type="text" name="product" id="product" oninput="findProduct()">
+                    <input class="form-control col-sm-4" type="text" name="product" id="product" oninput="findProduct(document.getElementById('product').value)">
                     <small id="product-finder" class="form-text text-muted">Abaixo aparecera a lista de produtos similares ao que foi digitado, selecione o produto que deseja!</small>
                     <span id="product-list"></span>
                 </div>
@@ -82,7 +83,7 @@
                 </tfoot>
             </table>
         </div>
-        <button type="submit" class="btn btn-success" form="venda">Salvar venda</button>
+        <button class="btn btn-success"  onclick="sendDados()" form="venda">Salvar venda</button>
     </main>
     <script src="script/script.js"></script>
 

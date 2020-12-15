@@ -5,7 +5,7 @@ class Db{
     private $DB_PORT = '127.0.0.1:3306'; 
     private $DB_USER = 'root'; 
     private $DB_PASSWORD = 'root'; 
-    private $DB_DATABASE = 'confin';
+    private $DB_DATABASE = 'sistema_de_vendas';
 
    
     function connect(){

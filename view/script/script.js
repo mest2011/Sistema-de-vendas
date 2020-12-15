@@ -1,59 +1,68 @@
-function findProduct() {
-    loadDoc();
+function findProduct(termo) {
+    loadDoc2(termo);
 }
 
+
 function listProducts(products) {
-    products = [{
-        "name": "Butter - Salted, Micro"
-    }, {
-        "name": "Ice Cream Bar - Oreo Sandwich"
-    }, {
-        "name": "Beef - Bresaola"
-    }, {
-        "name": "Lobster - Baby, Boiled"
-    }, {
-        "name": "Muffin - Mix - Bran And Maple 15l"
-    }];
+
     document.getElementById('product-list').style.display = "block";
     let lista = document.getElementById("product-list");
+
+    if (products == "0 dados encontrados") { lista.innerHTML = ''; return; };
+
+    var objItem;
+
     let resultado = "<table class='table table-hover'>";
     for (var item in products) {
-        resultado += "<tr onclick=\"selecteditem('" + products[item]['name'] + "')\"><td>" + products[item]['name'] + "</td></tr>";
+        objItem = JSON.stringify(products[item]);
+        resultado += "<tr onclick='selecteditem(" + objItem + ")'><td>" + products[item]['produto'] + "</td></tr>";
     }
     resultado += "</table>";
     lista.innerHTML = resultado;
 }
 
 
-function loadDoc() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            listProducts(this.responseText);
-        }
-    };
-    xhttp.open("GET", "teste.txt", true);
-    xhttp.send();
+const loadDoc2 = async(termo) => {
+    try {
+        const response = await fetch(`../controller/carrinho_controller.php?search=${termo}`);
+        const resultJson = await response.json();
+        listProducts(resultJson);
+    } catch (error) {
+
+    }
+
+
 }
 
-function selecteditem(id) {
+
+function selecteditem(dado) {
     let tabela = document.getElementById('nota').getElementsByTagName('tbody')[0];
     document.getElementById('carrinho').style.display = "block";
     document.getElementById('product').value = "";
     document.getElementById('product-list').style.display = "none";
 
-
+    //nova linha
     var newRow = tabela.insertRow();
 
+    //id oculto
     var newCell = newRow.insertCell();
-    var newText = document.createTextNode(id);
+    newCell.id = "produto" + (tabela.rows.length - 2);
+    var newText = document.createTextNode(dado['id_produto']);
+    newCell.setAttribute('style', 'display:none');
     newCell.appendChild(newText);
 
-    var newCell = newRow.insertCell();
+    //nome produto
+    newCell = newRow.insertCell();
+    newText = document.createTextNode(dado['produto']);
+    newCell.appendChild(newText);
+
+    //valor
+    newCell = newRow.insertCell();
     newCell.className = "valor";
-    var newText = document.createTextNode(Math.floor(Math.random() * 100));
+    newText = document.createTextNode(dado['valor']);
     newCell.appendChild(newText);
 
+    //excluir
     newCell = newRow.insertCell();
     newText = document.createTextNode("Excluir");
     newCell.setAttribute('onclick', 'deleteRow(this.parentNode.parentNode.rowIndex)');
@@ -84,11 +93,9 @@ function calculaTotal() {
         valorcalculado += parseFloat(el.innerHTML);
     });
     newText = document.createTextNode("Total: " + valorcalculado);
+    newCell.setAttribute('colspan', '2');
     newCell.appendChild(newText);
 
-    newCell = newRow.insertCell();
-    newText = document.createTextNode("");
-    newCell.appendChild(newText);
 
 
 }
@@ -102,10 +109,47 @@ function deleteRow(i) {
     calculaTotal()
 }
 
+//enviar dados para o backend
+
+function sendDados() {
+    tabela = document.getElementById('venda');
+    let venda = {
+        date: document.getElementById('date').value,
+        address: {
+            zipcode: document.getElementById('cep').value,
+            address: document.getElementById('logradouro').value,
+            number: document.getElementById('numero').value,
+            district: document.getElementById('bairro').value,
+            city: document.getElementById('cidade').value,
+            uf: document.getElementById('uf').value
+        },
+        productsId: listaDeProdutos()
+    }
+
+    campoJson = document.getElementById('json');
+    campoJson.value = JSON.stringify(venda);
+
+    //tabela.submit();
+}
+
+function listaDeProdutos() {
+    var tab = document.getElementById('nota').getElementsByTagName('tbody')[0];
+    var products = [];
+
+    for (i = 0; i < (tab.rows.length - 1); i++) {
+        str = document.getElementById('produto' + i).innerHTML;
+        products.push(str);
+    }
+
+    return products;
+}
+
+
+
+//Buscar endereço
 
 function buscarEndereco(cep) {
     cep = cep.replace(/-/gi, "");
-    console.log(cep)
     procuraCep(cep);
 }
 
@@ -124,8 +168,8 @@ const procuraCep = async(cep) => {
 function imprimeEndereco(json_address) {
     let endereco = document.getElementById('endereco');
     endereco.innerHTML =
-        "<label for=\"rua\">Logradouro</label>" +
-        "<input class=\"form-control col-sm-4\" type='text' id='rua' name='logradouro' value='" + json_address['logradouro'] + "' required>" +
+        "<label for=\"logradouro\">Logradouro</label>" +
+        "<input class=\"form-control col-sm-4\" type='text' id='logradouro' name='logradouro' value='" + json_address['logradouro'] + "' required>" +
         "<label for=\"numero\">Número</label>" +
         "<input class=\"form-control col-sm-2\" type='number' id='numero' name='numero' value='' required>" +
         "<label for=\"bairro\">Bairro</label>" +

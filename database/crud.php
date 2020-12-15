@@ -20,24 +20,26 @@
         }
 
         static function read($sql){
-            $data = array();
+            try{
+                $data = array();
 
-            $db = new Db();
-            
-            $conn = $db->connect();
+                $db = new Db();
+                
+                $conn = $db->connect();
 
-            $result = $conn->query($sql);
-               
-            $lines = $result->num_rows;
+                $result = $conn->query($sql);
 
-
-            if($lines > 0){
-                while ($row = $result->fetch_assoc()) {  
-                    array_push($data, $row);
+                if($result->num_rows){
+                    while ($row = $result->fetch_assoc()) {  
+                        array_push($data, $row);
+                    }
+                }else{
+                    $data = "0 dados encontrados";
                 }
-            }else{
+            }catch(Exception $e){
                 $data = "0 dados encontrados";
             }
+            
 
             $db->close($conn);
             return $data;
