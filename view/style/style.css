@@ -1,3 +1,7 @@
+body {
+    background-color: #f9fdff;
+}
+
 main {
     padding: 0 5vw;
 }
@@ -12,4 +16,8 @@ main {
 
 .excluir:hover {
     cursor: pointer;
+}
+
+#caixaBusca {
+    display: flex;
 }

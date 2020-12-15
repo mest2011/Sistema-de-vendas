@@ -52,10 +52,13 @@
                 </div>
                 <div class="form-group">
                     <label for="cep">CEP</label>
-                    <input class="form-control col-sm-4" type="search" id="cep" name="cep" placeholder="00000-000" aria-label="Search" required>
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar CEP</button>
+
+                    <div id="caixaBusca">
+                        <input class="form-control col-sm-3" type="search" id="cep" name="cep" placeholder="00000-000" aria-label="Search" required>
+                        <div class="btn btn-outline-success  col-sm-1" onclick="buscarEndereco(document.getElementById('cep').value)">Procurar</div>
+                    </div>
                     <small id="cep-finder" class="form-text text-muted">Digite o CEP para buscar o endereço de entrega!</small>
-                    <span>
+                    <span id="endereco">
 
                     </span>
                 </div>
@@ -63,7 +66,7 @@
             </form>
         </div>
         <div id="carrinho">
-            <h2>Lista de produtos no carrinho</h2>
+            <h2>Produtos no carrinho</h2>
             <table id="nota" class="table table-striped">
                 <thead class="thead-dark">
                     <th scope="col">Produto</th>
