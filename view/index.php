@@ -10,16 +10,7 @@
     <link rel="icon" type="imagem/png" href="imagens/logo-carrinho.png" />
 
 
-    <style>
-        main {
-            padding: 0 5vw;
-        }
-
-        #cadastro {
-            padding: 20px;
-
-        }
-    </style>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
@@ -51,8 +42,9 @@
             <form action="#" id="venda" class="form" method="POST">
                 <div class="form-group">
                     <label for="product">Produto</label>
-                    <input class="form-control col-sm-4" type="text" name="product" id="product" required>
+                    <input class="form-control col-sm-4" type="text" name="product" id="product" oninput="findProduct()">
                     <small id="product-finder" class="form-text text-muted">Abaixo aparecera a lista de produtos similares ao que foi digitado, selecione o produto que deseja!</small>
+                    <span id="product-list"></span>
                 </div>
                 <div class="form-group">
                     <label for="date">Data da venda</label>
@@ -64,7 +56,7 @@
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Procurar CEP</button>
                     <small id="cep-finder" class="form-text text-muted">Digite o CEP para buscar o endereço de entrega!</small>
                     <span>
-                        
+
                     </span>
                 </div>
 
@@ -72,50 +64,15 @@
         </div>
         <div id="carrinho">
             <h2>Lista de produtos no carrinho</h2>
-            <table class="table table-striped">
+            <table id="nota" class="table table-striped">
                 <thead class="thead-dark">
-                    <th scope="col">Cliente</th>
                     <th scope="col">Produto</th>
-                    <th scope="col">Valor uni.</th>
-                    <th scope="col">qtd</th>
-                    <th scope="col">Valor total</th>
-                    <th scope="col">Endereço</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col"></th>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                        <td>123</td>
-                    </tr>
-                    <tr>
-                        <td colspan="6">Valor total:</td>
+                    <tr id="total">
+                        <td>Total:</td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -124,9 +81,7 @@
         </div>
         <button type="submit" class="btn btn-success" form="venda">Salvar venda</button>
     </main>
-    <footer></footer>
-
-
+    <script src="script/script.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

@@ -1,0 +1,15 @@
+main {
+    padding: 0 5vw;
+}
+
+#cadastro {
+    padding: 20px;
+}
+
+#carrinho {
+    display: none;
+}
+
+.excluir:hover {
+    cursor: pointer;
+}
