@@ -1,5 +1,6 @@
+//carrega produto
 function findProduct(termo) {
-    loadDoc2(termo);
+    loadProduct(termo);
 }
 
 
@@ -22,7 +23,7 @@ function listProducts(products) {
 }
 
 
-const loadDoc2 = async(termo) => {
+const loadProduct = async(termo) => {
     try {
         const response = await fetch(`../controller/carrinho_controller.php?search=${termo}`);
         const resultJson = await response.json();
@@ -128,8 +129,6 @@ function sendDados() {
 
     campoJson = document.getElementById('json');
     campoJson.value = JSON.stringify(venda);
-
-    //tabela.submit();
 }
 
 function listaDeProdutos() {
@@ -159,7 +158,7 @@ const procuraCep = async(cep) => {
         const resultJson = await response.json();
         imprimeEndereco(resultJson);
     } catch (error) {
-        document.getElementById('endereco').innerHTML = "<p>Erro ao buscar CEP - CEP inválido</p>"
+        document.getElementById('endereco').innerHTML = "<div class=\"alert alert-danger\">Erro ao buscar CEP - CEP inválido</div>"
     }
 
 
