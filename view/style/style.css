@@ -1,0 +1,27 @@
+body {
+    background-color: #f9fdff;
+}
+
+main {
+    padding: 0 5vw;
+}
+
+#cadastro {
+    padding: 20px;
+}
+
+#carrinho {
+    display: none;
+}
+
+#json {
+    display: none;
+}
+
+.excluir:hover {
+    cursor: pointer;
+}
+
+#caixaBusca {
+    display: flex;
+}
