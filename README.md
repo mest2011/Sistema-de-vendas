@@ -14,7 +14,9 @@ Sistema de vendas utilizando as seguintes tecnologias PHP, MySQL, HTML, CSS e Ja
 </ul> 
 <br>
 <h2>Configurações</h2>
-<p>- O arquivo de geração do banco de dados está na pasta “config”.</p>
+<p>- O arquivo de geração do banco de dados está na pasta “config”, aqruivo <b>"sql_create_database.sql"</b>.</p>
 <p>- Trocar a conexão com o banco no arquivo “connection.php” dentro da pasta “database”.</p>
 <br>
 <p>Com os passos acima executados, basta colocar o projeto no servidor web e acessar o diretório do projeto, adicionado o index.php na url. (exemplo: http://127.0.0.1/ sistema_de_vendas/index.php ), normalmente não é necessário, pois o navegador redireciona para pagina index, mas de qualquer forma, fica a dica.</p>
+
+<p><b>OBS.:</b> O banco esta populado por alguns dados, caso deseje, apague-os!</p>
