@@ -16,20 +16,17 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="index.php">
                 <img src="imagens/logo-carrinho.png" width="30" height="30" alt="">
             </a>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.php">Cadastrar</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cadastrar venda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Vendas</a>
+                        <a class="nav-link" href="listaVendas.php">Listar vendas</a>
                     </li>
                 </ul>
             </div>
@@ -56,7 +53,7 @@
 
                     <div id="caixaBusca">
                         <input class="form-control col-sm-3" type="search" id="cep" name="cep" placeholder="00000-000" aria-label="Search" required>
-                        <div class="btn btn-outline-success  col-sm-1" onclick="buscarEndereco(document.getElementById('cep').value)">Procurar</div>
+                        <div class="btn btn-outline-info  col-sm-1" onclick="buscarEndereco(document.getElementById('cep').value)">Procurar</div>
                     </div>
                     <small id="cep-finder" class="form-text text-muted">Digite o CEP para buscar o endereço de entrega!</small>
                     <span id="endereco">

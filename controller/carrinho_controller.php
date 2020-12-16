@@ -1,7 +1,6 @@
 <?php
     include_once "../database/crud.php";
 
-
     class Carrinho extends Crud{
 
         function buscaProdutos($search){
@@ -42,9 +41,13 @@
 
                 parent::create($sql);
             }
+
+            header("LOCATION: ../view/"); 
             
         }
     }
+
+
 
 
 
@@ -57,3 +60,5 @@
         $carrinho = new Carrinho();
         $carrinho->buscaProdutos($_GET['search']);
     }
+
+    ?>
